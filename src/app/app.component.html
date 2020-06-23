@@ -1,43 +1,26 @@
 <form [formGroup]="userForm" (ngSubmit)="sendData()">
-    <div>
-      <label for="nome">Nome: </label>
-      <input type="text" formControlName="nome">
+
+  <div>
+    <label for="cpf">CPF:</label>
+    <input type="text" formControlName="cpf">
+    <div *ngIf="!cpf.pristine && cpf.errors">
+      <p *ngIf="cpf.errors.required">
+        CPF é obrigatório.
+      </p>
+      <p *ngIf="cpf.errors.invalidCpf">
+        Digite um CPF válido
+      </p>
     </div>
-  
-    <div>
-      <label for="email">E-mail: </label>
-      <input type="text" formControlName="email">
-    </div>
-  
-    <div>
-      <label for="cpf">CPF: </label>
-      <input type="text" formControlName="cpf">
-    </div>
-  
-    <div>
-      <label for="nascimento">Nascimento: </label>
-      <input type="date" formControlName="nascimento">
-    </div>
-  
-    <div>
-      <label for="senha">Senha: </label>
-      <input type="password" formControlName="senha">
-    </div>
-  
-    <div>
-      <label for="confirmarSenha">Nome: </label>
-      <input type="password" formControlName="confirmarSenha">
-    </div>
-  
-    <br>
-    <div>
-      <button [disabled]="!userForm.valid">Enviar dados</button>
-    </div>
-  
-    <br>
-    <br>
-  
-    <div>{{ userForm.value | json}}</div>
-    <div>{{ userForm.valid | json }}</div>
-  </form>
-  
+  </div>
+
+  <br>
+  <div>
+    <button [disabled]="!userForm.valid">Enviar dados</button>
+  </div>
+
+  <br>
+  <br>
+
+  <div>{{ userForm.value | json}}</div>
+  <div>{{ userForm.valid | json }}</div>
+</form>
