@@ -1,43 +1,40 @@
-<form [formGroup]="userForm" (ngSubmit)="sendData()">
-    <div>
-      <label for="nome">Nome: </label>
-      <input type="text" formControlName="nome">
-    </div>
-  
-    <div>
-      <label for="email">E-mail: </label>
-      <input type="text" formControlName="email">
-    </div>
-  
-    <div>
-      <label for="cpf">CPF: </label>
-      <input type="text" formControlName="cpf">
-    </div>
-  
-    <div>
-      <label for="nascimento">Nascimento: </label>
-      <input type="date" formControlName="nascimento">
-    </div>
-  
-    <div>
-      <label for="senha">Senha: </label>
-      <input type="password" formControlName="senha">
-    </div>
-  
-    <div>
-      <label for="confirmarSenha">Nome: </label>
-      <input type="password" formControlName="confirmarSenha">
-    </div>
-  
+<nav class="header">  
+   
+</nav>
+ 
+<div class = "container">
+ 
+  <div class = "headerForm">
+    <h1>Kd minha sala?</h1>
     <br>
-    <div>
-      <button [disabled]="!userForm.valid">Enviar dados</button>
+    <p>Para ajudar alguém a encontrar suas salas hoje,
+        digite o CPF no campo abaixo e clique no botão 
+        para buscar.</p>
+    
+    <div class="space"></div>
+   
+        
+    <form class ="studentForm" [formGroup]="studentForm" (ngSubmit)="sendData()">
+         
+        <div>
+         <input class="form-group" type="text" placeholder="Digite o CPF" formControlName="cpf">
+            <div *ngIf="!cpf.pristine && cpf.errors">
+              <p *ngIf="cpf.errors.required">
+                CPF é obrigatório.
+              </p>
+              <br>
+              <p *ngIf="cpf.errors.invalidCpf">
+                Por favor, digite um CPF válido
+              </p>
+            </div>
+          </div>
+          <br>
+             
+            <div class="form-group">
+                <button class="buttonSubmit" [disabled]="!studentForm.valid">Buscar</button>
+            </div>
+ 
+            <div>{{ studentForm.value | json}}</div>
+            <div>{{ studentForm.valid | json }}</div>
+    </form>
     </div>
-  
-    <br>
-    <br>
-  
-    <div>{{ userForm.value | json}}</div>
-    <div>{{ userForm.valid | json }}</div>
-  </form>
-  
