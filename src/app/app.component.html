@@ -1,4 +1,4 @@
-<form [formGroup]="userForm" (ngSubmit)="sendData()">
+<form [formGroup]="studentForm" (ngSubmit)="sendData()">
 
   <div>
     <label for="cpf">CPF:</label>
@@ -15,12 +15,14 @@
 
   <br>
   <div>
-    <button [disabled]="!userForm.valid">Enviar dados</button>
+    <button [disabled]="!studentForm.isValid">Enviar dados</button>
   </div>
 
   <br>
   <br>
 
-  <div>{{ userForm.value | json}}</div>
-  <div>{{ userForm.valid | json }}</div>
+  <!--esses elementos são somente para o teste, quando a mensagem de erro 
+    vermelha aparecer corretamente pode deixar eles comentados-->
+  <div>{{ studentForm.value | json}}</div>
+  <div>{{ studentForm.valid | json }}</div>
 </form>

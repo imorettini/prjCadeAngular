@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '../../node_modules/@angular/forms';
-import { User } from './user';
+import { Student } from './student';
 import { Validations } from './validations'
 
 
@@ -10,28 +10,40 @@ import { Validations } from './validations'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  userForm: FormGroup;
+  studentForm: FormGroup;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.createUserForm();
+    this.createStudentForm();
   }
+
   //Vou enviar o CPF para onde? Será que devemos puxar o POST aqui?
   sendData() {
-    console.log(this.userForm.value); 
-    this.userForm.reset();
+    const formData = this.studentForm.value;
+
+    const student = new Student(
+      formData.cpf,
+
+    );
+    //alert(`O usuário ${usuario.nome} foi cadastrado com sucesso. \n Dados: ${JSON.stringify(usuario)}`);
+    this.studentForm.reset();
 
   }
-  createUserForm() {
-    this.userForm = this.fb.group({
-      cpf: ['', Validators.compose([Validators.required])],
-    });
-  
+  createStudentForm() {
+    this.studentForm = this.fb.group(
+      {
+        cpf: [
+          '',
+          Validators.compose([Validators.required, Validations.cpfValidation])
+        ],
+      }
+    )
   }
+
   //Propriedade para obter os erros de validação 
   get cpf() {
-    return this.userForm.get('cpf');
+    return this.studentForm.get('cpf');
   }
 }
 
