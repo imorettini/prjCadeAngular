@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   studentForm: FormGroup;
   constructor(private fb: FormBuilder) { }
   ngOnInit(): void {
-    this.createStudentForm();
+    this.validateStudentForm();
   }
   //Vou enviar o CPF para onde? Será que devemos puxar o POST aqui?
   sendData() {
@@ -21,10 +21,10 @@ export class AppComponent implements OnInit {
     this.studentForm.reset();
 
   }
-  createStudentForm() {
+  validateStudentForm() {
     this.studentForm = this.fb.group({
 
-      cpf: ['', Validators.compose([Validators.required])],
+      cpf: ['', Validators.compose([Validations.cpfValidation])],
     });
 
   }
